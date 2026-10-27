@@ -1148,6 +1148,118 @@ h1 em {
     font-size:13px
   }
 }
+/* Screen readability and touch targets, including narrow phones. */
+@media screen {
+  .button, .text-link {
+    font-size:14px;
+    min-height:44px;
+  }
+  .hero-actions {
+    flex-wrap:wrap;
+    gap:14px 24px;
+  }
+  .eyebrow, .hero .eyebrow, .career-entry .eyebrow,
+  .qualifications .eyebrow, .article-meta, .expertise-item .item-tags {
+    font-size:11px;
+    letter-spacing:.65px;
+  }
+  .expertise-item .item-tags {
+    color:#526745;
+  }
+  .hero-location, .credential-strip>div, .article-meta time,
+  .qualifications p, .qualifications p span, .writing-footer>span {
+    font-size:12px;
+  }
+  .credential-strip>div {
+    flex-wrap:wrap;
+    row-gap:10px;
+  }
+  .expertise-item>p:not(.item-tags), .section-heading>p:last-child,
+  .career-entry>p:last-child, .writing-heading>p, .about-intro>p:not(.eyebrow) {
+    font-size:15px;
+  }
+  .contact-links>p {
+    font-size:13px!important;
+  }
+  .site-footer>p, .site-footer>span, .back-top {
+    font-size:12px;
+  }
+  .writing-footer {
+    flex-wrap:wrap;
+  }
+  .article-row:focus-visible {
+    background:#edf0e5;
+    outline-offset:3px;
+  }
+  .contact-section a:focus-visible {
+    outline-color:var(--lime);
+  }
+}
+@media screen and (max-width:800px) {
+  .section-heading {
+    grid-template-columns:1fr;
+  }
+  .section-heading>p:last-child {
+    max-width:520px;
+  }
+  .writing-heading {
+    flex-wrap:wrap;
+  }
+  .article-meta {
+    letter-spacing:0;
+  }
+}
+@media screen and (max-width:600px) {
+  body:not(.resume-page) .site-header {
+    height:auto;
+    padding-block:18px 10px;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .site-header nav {
+    width:100%;
+    justify-content:space-between;
+    gap:10px;
+    font-size:13px;
+  }
+  .site-header nav>a, .site-header nav>a:first-child {
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+  }
+  .hero-location {
+    font-family:var(--sans);
+    line-height:1.8;
+  }
+  .credential-strip>div {
+    column-gap:14px;
+  }
+  .credential-strip>div span+span {
+    padding-left:14px;
+  }
+  .qualifications {
+    grid-template-columns:1fr;
+  }
+  .article-meta {
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .contact-email {
+    font-size:clamp(20px,6vw,26px);
+  }
+  .site-footer>p {
+    width:100%;
+  }
+  .site-footer>span {
+    margin-left:0;
+  }
+  .resume-toolbar .text-link {
+    font-size:11px;
+  }
+  .resume-toolbar .button {
+    font-size:10px;
+  }
+}
 @media(prefers-reduced-motion:reduce) {
   html {
     scroll-behavior:auto

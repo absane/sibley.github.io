@@ -18,7 +18,10 @@ class Page(HTMLParser):
         self.json_ld = []
         self.in_json_ld = False
         self.h1_count = 0
-        self.feed(path.read_text(encoding="utf-8"))
+        source = path.read_text(encoding="utf-8")
+        if "@gmail.com" in source.casefold():
+            raise ValueError(f"{path.name}: personal email must not be published")
+        self.feed(source)
 
     def handle_starttag(self, tag, attributes):
         attrs = dict(attributes)
@@ -65,7 +68,7 @@ def build():
                     raise ValueError(f"{name}: missing anchor: {link}")
     output = ROOT / "_site"
     output.mkdir(exist_ok=True)
-    for name in (*PAGES, ".nojekyll"):
+    for name in (*PAGES, ".nojekyll", "robots.txt", "sitemap.xml"):
         shutil.copy2(ROOT / name, output / name)
     shutil.copytree(ROOT / "assets", output / "assets", dirs_exist_ok=True)
     print(f"Validated {len(pages)} pages and all local links; staged public site in {output}")

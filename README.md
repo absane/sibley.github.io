@@ -21,7 +21,13 @@ Open <http://127.0.0.1:5197/>. The résumé's **Print / Save PDF** button opens 
 
 The workflow validates the JavaScript, checks local links and anchors, stages only public assets, and deploys `_site/`. Git metadata, documentation, scripts, and the supplied LinkedIn export are excluded from the deployment artifact.
 
-Expected default address after enabling Pages and successful deployment:
+Public address:
+
+<https://sibleysec.com/>
+
+The custom domain is configured in GitHub Pages settings. Canonical links, structured profile data, and `sitemap.xml` use this address. The published contact address is `james@sibleysec.com`, as specified by the owner; personal contact information from the source export is not used on the site.
+
+GitHub's original project address:
 
 <https://absane.github.io/sibley.github.io/>
 
