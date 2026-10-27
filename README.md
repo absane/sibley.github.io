@@ -1,13 +1,17 @@
 # James Sibley — Independent Security Consulting
 
-A static professional site and printable public résumé, built for GitHub Pages. No framework, package installation, analytics, remote fonts, or backend is required. All page content works without JavaScript; JavaScript updates the copyright year and opens the browser print dialog.
+A static professional site, Markdown blog, and printable public résumé, built for GitHub Pages. Two pinned Python libraries build the blog; visitors need no framework, account, or backend. There are no analytics or remote fonts. All content and navigation work without JavaScript; JavaScript updates the copyright year and opens the browser print dialog.
+
+To write a post, see [the blog publishing guide](BLOGGING.md). The public blog is at <https://sibleysec.com/blog/>.
 
 ## Preview
 
 From this repository:
 
 ```powershell
-python scripts/build.py
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe scripts/build.py
 python -m http.server 5197 --bind 127.0.0.1 --directory _site
 ```
 
@@ -19,7 +23,7 @@ Open <http://127.0.0.1:5197/>. The résumé's **Print / Save PDF** button opens 
 2. Under **Build and deployment → Source**, select **GitHub Actions**.
 3. Push to `main`, or run **Deploy professional site** from the repository's [Actions tab](https://github.com/absane/sibley.github.io/actions).
 
-The workflow validates the JavaScript, checks local links and anchors, stages only public assets, and deploys `_site/`. Git metadata, documentation, scripts, and the supplied LinkedIn export are excluded from the deployment artifact.
+The workflow installs the pinned Markdown dependencies, runs publishing tests, renders published posts, validates JavaScript and local links, and deploys `_site/`. Git metadata, documentation, scripts, Markdown source, post templates, draft posts, and the supplied LinkedIn export are excluded from the deployment artifact. Each build clears the generated `_site/` directory so deleted or unpublished posts are removed. Do not edit `_site/` directly.
 
 Public address:
 
@@ -40,8 +44,13 @@ The repository is owned by `absane`; its name does **not** assign the `sibley.gi
 - `assets/styles.css`: design tokens, layout, responsive breakpoints, and print styles.
 - `assets/favicon.svg`: vector monogram.
 - `assets/site.js`: optional year and print helpers.
+- `blog/posts/*.md`: posts written in Markdown with YAML properties.
+- `blog/templates/post.md`: reusable Obsidian template.
+- `blog/assets/`: public blog images and attachments.
+- `templates/blog-page.html`: shared layout for generated blog pages.
+- `scripts/blog.py`: Markdown, listing, RSS, and article generation.
 
-After editing, run `python scripts/build.py` and `node --check assets/site.js`, inspect the preview at desktop and mobile sizes, then commit the completed change.
+After editing, run `.venv\Scripts\python.exe -m unittest discover -s tests`, `.venv\Scripts\python.exe scripts/build.py`, and `node --check assets/site.js`, inspect the preview, then commit the completed change.
 
 ## Content provenance
 
