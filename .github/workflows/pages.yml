@@ -17,9 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
+      - name: Install blog build dependencies
+        run: python3 -m pip install -r requirements.txt
       - name: Validate and stage public files
         run: |
           node --check assets/site.js
+          python3 -m unittest discover -s tests
           python3 scripts/build.py
       - name: Upload site
         uses: actions/upload-pages-artifact@v5.0.0

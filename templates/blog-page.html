@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d32">
+  <meta name="description" content="$description">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta property="og:title" content="$title">
+  <meta property="og:description" content="$description">
+  <meta property="og:type" content="$og_type">
+  <meta property="og:url" content="$canonical">
+  <meta property="og:site_name" content="James Sibley — Independent Security Consultant">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="$canonical">
+  <link rel="alternate" type="application/rss+xml" title="James Sibley — Blog" href="$blog_prefix/feed.xml">
+  <link rel="icon" href="$root/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="$root/assets/styles.css">
+  <script src="$root/assets/site.js" defer></script>
+  <script type="application/ld+json">$structured_data</script>
+  <title>$title</title>
+</head>
+<body class="blog-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="$root/index.html">james sibley<span class="wordmark-dot">.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="$root/index.html#expertise">Expertise</a>
+      <a href="$root/index.html#about">About</a>
+      <a href="$root/index.html#writing">Writing</a>
+      <a href="$blog_prefix/" aria-current="page">Blog</a>
+      <a class="nav-contact" href="$root/index.html#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main" class="wrap blog-main">$content</main>
+  <footer class="site-footer wrap"><a class="wordmark" href="$root/index.html">james sibley<span class="wordmark-dot">.</span></a><p>Independent security consulting · Atlanta, GA</p><span>© <span data-year>$year</span> James Sibley</span></footer>
+</body>
+</html>
