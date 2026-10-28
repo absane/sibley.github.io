@@ -52,6 +52,8 @@ def read_posts(root):
         tags = metadata.get("tags", []) or []
         if not isinstance(tags, list) or not all(isinstance(tag, str) for tag in tags):
             raise ValueError(f"{source.name}: tags must be a YAML list of text labels")
+        if any(not tag or any(character.isspace() for character in tag) for tag in tags):
+            raise ValueError(f"{source.name}: tags cannot contain spaces; use underscores, such as Offensive_Security")
         body = parts[1].strip()
         if not body:
             raise ValueError(f"{source.name}: published posts need a body")
@@ -67,7 +69,7 @@ def formatted_date(value):
 
 
 def tags_html(tags):
-    return "".join(f'<span class="post-tag">{html.escape(tag)}</span>' for tag in tags)
+    return "".join(f'<span class="post-tag">{html.escape(tag.replace("_", " "))}</span>' for tag in tags)
 
 
 def render_body(post, posts):
@@ -147,5 +149,5 @@ def write_feed(posts, output):
                            "pubDate": datetime.combine(post["date"], time(), timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")}.items():
             ET.SubElement(item, key).text = value
         for tag in post["tags"]:
-            ET.SubElement(item, "category").text = tag
+            ET.SubElement(item, "category").text = tag.replace("_", " ")
     ET.ElementTree(rss).write(output / "blog" / "feed.xml", encoding="utf-8", xml_declaration=True)

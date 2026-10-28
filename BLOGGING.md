@@ -33,12 +33,14 @@ date: 2026-10-27
 summary: "A short description shown in the blog listing and link previews."
 tags:
   - Research
-  - AI
+  - Artificial_Intelligence
 draft: true
 ---
 ```
 
 Change the date to your intended publication date. It controls the displayed date and sorting; it does not schedule a future deployment. To publish, set `draft: false` and push. If `draft` is omitted, the post remains unpublished. Posts appear newest first.
+
+Use underscores for multiword tags: `Artificial_Intelligence` and `Offensive_Security`. Obsidian tags cannot contain spaces. The website and RSS feed display those labels as “Artificial Intelligence” and “Offensive Security”; the Markdown source retains the underscores. The build rejects tags containing whitespace. See [Obsidian's tag format](https://obsidian.md/help/tags).
 
 The title property becomes the page's `h1`. Start the article's sections at `##`, then use `###` for subsections. Normal Markdown paragraphs, lists, blockquotes, fenced code, tables, footnotes, and images are supported. Code blocks are displayed, never executed by the builder.
 

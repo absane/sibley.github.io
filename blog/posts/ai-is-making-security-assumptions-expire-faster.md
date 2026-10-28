@@ -4,8 +4,8 @@ date: "2026-10-28"
 summary: "AI can reduce the effort needed to explore an attack path while adding new questions about trust and authority. Security teams need evidence that their controls can keep pace."
 tags:
   - Commentary
-  - Artificial Intelligence
-  - Offensive Security
+  - Artificial_Intelligence
+  - Offensive_Security
 draft: false
 ---
 

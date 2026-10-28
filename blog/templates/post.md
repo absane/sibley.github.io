@@ -4,6 +4,7 @@ date: "{{date:YYYY-MM-DD}}"
 summary: "One or two sentences explaining what the reader will learn."
 tags:
   - Research
+  - Offensive_Security
 draft: true
 ---
 

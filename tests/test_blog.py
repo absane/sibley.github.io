@@ -97,6 +97,25 @@ class BlogPublishingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "personal email"):
             self.run_build()
 
+    def test_obsidian_tags_display_with_spaces_without_changing_source_or_code(self):
+        source = self.post("tagged", body="## Findings\n\n`variable_name` stays unchanged.")
+        source.write_text(source.read_text().replace("tags: [Research]", "tags: [Artificial_Intelligence, Offensive_Security]"))
+        output = self.run_build()
+        for path in (output / "blog" / "index.html", output / "blog" / "tagged" / "index.html"):
+            page = path.read_text(encoding="utf-8")
+            self.assertIn('class="post-tag">Artificial Intelligence</span>', page)
+            self.assertIn('class="post-tag">Offensive Security</span>', page)
+        categories = ET.parse(output / "blog" / "feed.xml").findall(".//category")
+        self.assertEqual(["Artificial Intelligence", "Offensive Security"], [item.text for item in categories])
+        self.assertIn("Artificial_Intelligence", source.read_text())
+        self.assertIn("variable_name", (output / "blog" / "tagged" / "index.html").read_text(encoding="utf-8"))
+
+    def test_tags_with_spaces_fail_with_actionable_message(self):
+        source = self.post("invalid-tags")
+        source.write_text(source.read_text().replace("tags: [Research]", "tags: [Offensive Security]"))
+        with self.assertRaisesRegex(ValueError, "use underscores"):
+            self.run_build()
+
     def test_new_post_helper_creates_valid_draft_and_never_overwrites(self):
         with patch.object(new_post, "ROOT", self.root), contextlib.redirect_stdout(io.StringIO()):
             new_post.create_post('Testing "quoted" titles')
